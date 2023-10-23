@@ -1,4 +1,4 @@
-package com.pgonrod.app
+package com.pgonrod.app.errors
 
 sealed class Either<out L, out R> {
 
