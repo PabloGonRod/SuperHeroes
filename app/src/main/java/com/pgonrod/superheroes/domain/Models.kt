@@ -5,10 +5,10 @@ data class urlImages(val xs: String, val sm: String, val md: String, val lg: Str
 data class Biography(val fullName: String)
 data class Work(val occupation: String)
 
-
 data class SuperHeroFeed(
     val id: Int,
     val name: String,
     val occupation: String,
-    val realName: String
+    val realName: String,
+    val images: urlImages
 )

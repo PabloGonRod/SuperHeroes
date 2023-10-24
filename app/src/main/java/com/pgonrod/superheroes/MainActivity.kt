@@ -8,6 +8,7 @@ import com.pgonrod.superheroes.data.biography.api.BiographyApiRemoteDataSource
 import com.pgonrod.superheroes.data.superhero.remote.api.SuperHeroApiRemoteDataSource
 import com.pgonrod.superheroes.data.work.remote.api.WorkApiRemoteDataSource
 import com.pgonrod.superheroes.domain.SuperHeroFeed
+import com.pgonrod.superheroes.domain.urlImages
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -38,7 +39,8 @@ class MainActivity : AppCompatActivity() {
                         superheroe.id,
                         superheroe.name,
                         work!!.occupation,
-                        biography!!.fullName
+                        biography!!.fullName,
+                        superheroe.images
                     )
                 }
             }
