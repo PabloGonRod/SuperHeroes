@@ -1,4 +1,4 @@
-package com.pgonrod.superheroes.data.biography
+package com.pgonrod.superheroes.data.biography.remote
 
 import com.pgonrod.app.errors.Either
 import com.pgonrod.app.errors.ErrorApp
