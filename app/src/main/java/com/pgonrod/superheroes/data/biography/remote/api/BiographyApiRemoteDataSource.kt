@@ -7,7 +7,7 @@ import com.pgonrod.superheroes.data.biography.remote.BiographyRemoteDataSource
 import com.pgonrod.superheroes.domain.Biography
 
 class BiographyApiRemoteDataSource(val apiClient: ApiClient): BiographyRemoteDataSource {
-    override fun getBiography(heroId: Int): Either<ErrorApp, Biography?> {
+    override suspend fun getBiography(heroId: Int): Either<ErrorApp, Biography?> {
         return apiClient.getBiography(heroId).map { biographyApiModel ->
             biographyApiModel!!.toDomain()
         }

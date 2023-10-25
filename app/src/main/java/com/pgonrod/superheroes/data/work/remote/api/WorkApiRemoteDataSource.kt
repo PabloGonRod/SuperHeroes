@@ -7,7 +7,7 @@ import com.pgonrod.superheroes.data.work.remote.WorkRemoteDataSource
 import com.pgonrod.superheroes.domain.Work
 
 class WorkApiRemoteDataSource(val apiClient: ApiClient): WorkRemoteDataSource {
-    override fun getWork(heroId: Int): Either<ErrorApp, Work?> {
+    override suspend fun getWork(heroId: Int): Either<ErrorApp, Work?> {
         return apiClient.getWork(heroId).map { workApiModel ->
             workApiModel!!.toDomain()
         }

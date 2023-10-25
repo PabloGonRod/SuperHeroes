@@ -29,28 +29,28 @@ class ApiClient {
 
     fun buildApiEndPoints() = createRetrofitClient().create(ApiService::class.java)
 
-    fun getSuperHeroes(): Either<ErrorApp, List<SuperHeroApiModel>>  {
+    suspend fun getSuperHeroes(): Either<ErrorApp, List<SuperHeroApiModel>>  {
             val superheroes = apiService.getSuperHeroesFeed()
-            val response = superheroes.execute()
-            if (response.isSuccessful){
-                return response.body()!!.right()
+
+            if (superheroes.isSuccessful){
+                return superheroes.body()!!.right()
             } else {
                 return ErrorApp.InternetErrorApp.left()
             }
     }
 
-    fun getSuperHeroe(heroId: Int) : Either<ErrorApp, SuperHeroApiModel?>{
-        val call = apiService.getSuperHero(heroId).execute()
+    suspend fun getSuperHeroe(heroId: Int) : Either<ErrorApp, SuperHeroApiModel?>{
+        val call = apiService.getSuperHero(heroId)
         return call.body().right()
     }
 
-    fun getWork(heroId: Int) : Either<ErrorApp, WorkApiModel?>{
-        val call = apiService.getWork(heroId).execute()
+    suspend fun getWork(heroId: Int) : Either<ErrorApp, WorkApiModel?>{
+        val call = apiService.getWork(heroId)
         return call.body().right()
     }
 
-    fun getBiography(heroId: Int) : Either<ErrorApp, BiographyApiModel?>{
-        val call = apiService.getbiography(heroId).execute()
+    suspend fun getBiography(heroId: Int) : Either<ErrorApp, BiographyApiModel?>{
+        val call = apiService.getbiography(heroId)
         return call.body().right()
     }
 
