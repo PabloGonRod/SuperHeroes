@@ -13,21 +13,23 @@ class GetAllSuperHeroUseCase (
     private val workRepository: WorkApiRemoteDataSource,
     private val biographyRepository: BiographyApiRemoteDataSource) {
     operator fun invoke(): Either<ErrorApp, List<SuperHeroFeed>> {
-        val superheroes = superheroRepository.getAllSuperHeroes().get()
+        val superheroes = superheroRepository.getAllSuperHeroes()
 
-        val list = superheroes.map { superhero ->
-            val work = workRepository.getWork(superhero.id).get()
-            val biography = biographyRepository.getBiography(superhero.id).get()
+        val list = superheroes.map {
+            it.map { superhero ->
+                val work = workRepository.getWork(superhero.id).get()
+                val biography = biographyRepository.getBiography(superhero.id).get()
 
-            SuperHeroFeed(
-                superhero.id,
-                superhero.name,
-                superhero.getImageM(),
-                work!!.occupation,
-                biography!!.fullName
-            )
+                SuperHeroFeed(
+                    superhero.id,
+                    superhero.name,
+                    superhero.getUrlImagesM(),
+                    work!!.occupation,
+                    biography!!.fullName
+                )
+            }
         }
-        return list.right()
+        return list
     }
 
 

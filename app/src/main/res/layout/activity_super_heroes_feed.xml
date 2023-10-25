@@ -6,19 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".presentation.SuperHeroesFeedActivity">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="PRUEBA"
-        android:textAlignment="center"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
-
-    <!--<androidx.recyclerview.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/superheroeFeed"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/view_item_superheroe_feed"/>-->
+        tools:listitem="@layout/view_item_superheroe_feed"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
