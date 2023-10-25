@@ -37,13 +37,16 @@
             app:layout_constraintStart_toStartOf="@id/name"/>
         <TextView
             android:id="@+id/occupation"
-            android:layout_width="wrap_content"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:textSize="12sp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:textSize="10sp"
             app:layout_constraintBottom_toBottomOf="@id/image"
-            app:layout_constraintStart_toStartOf="@id/name"
+            app:layout_constraintStart_toStartOf="@id/fullName"
             tools:text="Freelance photographer, teacher"/>
         <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/ic_arrow"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:src="@drawable/ic_arrow"
