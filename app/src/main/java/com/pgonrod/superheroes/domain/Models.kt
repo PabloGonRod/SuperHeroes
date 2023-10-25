@@ -10,3 +10,5 @@ data class urlImage(val md: String)
 data class Biography(val fullName: String)
 data class Work(val occupation: String)
 
+data class Powerstats(val intelligence: Int, val speed: Int, val combat: Int)
+

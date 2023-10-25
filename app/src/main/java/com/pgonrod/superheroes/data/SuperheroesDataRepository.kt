@@ -24,4 +24,8 @@ class SuperheroesDataRepository (
             list
         }
     }
+
+    override suspend fun getSuperHeroe(heroId: Int): Either<ErrorApp, SuperHero?> {
+        return remotesource.getSuperHeroe(heroId)
+    }
 }
