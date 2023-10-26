@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.faltenreich.skeletonlayout.Skeleton
@@ -86,6 +87,10 @@ class SuperHeroesFeedActivity : AppCompatActivity() {
                         navigateToDetail(it)
                     }
                 }
+            }
+            binding.filter.addTextChangedListener {filter ->
+                val filtered = uiState.superherolist.filter { superhero -> superhero.name.contains(filter.toString()) }
+                superheroAdapter.submitList(filtered)
             }
         }
         viewModel.uiState.observe(this, observer)
