@@ -1,5 +1,6 @@
 package com.pgonrod.superheroes.presentation
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -81,6 +82,9 @@ class SuperHeroesFeedActivity : AppCompatActivity() {
                 }else{
                     val list = uiState.superherolist
                     superheroAdapter.submitList(list)
+                    superheroAdapter.setOnClickDetail {
+                        navigateToDetail(it)
+                    }
                 }
             }
         }
@@ -102,6 +106,12 @@ class SuperHeroesFeedActivity : AppCompatActivity() {
     fun errorUnknown() = binding.viewError.errorUnknown()
     fun errorDatabase() = binding.viewError.errorDatabase()
     fun errorInternet() = binding.viewError.errorInternet()
+
+    fun navigateToDetail(id:Int){
+        val intent = Intent(this, SuperHeroesDetailActivity::class.java)
+        intent.putExtra("id", id)
+        startActivity(intent)
+    }
 
 
 }
