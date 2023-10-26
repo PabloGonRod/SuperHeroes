@@ -37,9 +37,8 @@ class SuperHeroesDetailActivity : AppCompatActivity() {
         binding = ActivitySuperHeroesDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setupObserver()
-        val bundle  = intent.extras
-        val id = bundle?.getInt("id")
-        viewModel.loadSuperHeroesDetail(id!!)
+        val id = intent.extras!!.getInt("id")
+        viewModel.loadSuperHeroesDetail(id)
     }
 
     fun setupObserver(){

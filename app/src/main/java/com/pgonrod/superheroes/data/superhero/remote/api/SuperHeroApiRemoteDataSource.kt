@@ -9,7 +9,7 @@ import com.pgonrod.superheroes.domain.SuperHero
 class SuperHeroApiRemoteDataSource(val apiClient: ApiClient): SuperHeroRemoteDataSource {
     override suspend fun getSuperHeroes(): Either<ErrorApp, List<SuperHero>> {
         return apiClient.getSuperHeroes().map { listSuperheroApiModel ->
-            listSuperheroApiModel.subList(0,20).map { superheroeApiModel ->
+            listSuperheroApiModel.subList(0,50).map { superheroeApiModel ->
                 superheroeApiModel.toDomain()
             }
         }

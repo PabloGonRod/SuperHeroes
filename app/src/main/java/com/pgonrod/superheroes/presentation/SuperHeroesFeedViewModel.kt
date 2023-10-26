@@ -19,7 +19,6 @@ class SuperHeroesFeedViewModel(private val useCase: GetAllSuperHeroUseCase): Vie
         _uistate.postValue(SuperHeroUiState(isloading = true))
         viewModelScope.launch (Dispatchers.IO) {
             val feed = useCase.invoke()
-            delay(2000)
             feed.fold(
                 {responseError(it)},
                 {_uistate.postValue(
