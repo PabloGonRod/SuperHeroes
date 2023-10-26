@@ -62,9 +62,6 @@ class SuperHeroesDetailActivity : AppCompatActivity() {
             numVelocity.text = detail.speed.toString()
             numCombat.text = detail.combat.toString()
             imageDetail.loadurl(detail.images)
-            imageDetailPowerstat1.loadurl(detail.images)
-            imageDetailPowerstat2.loadurl(detail.images)
-            imageDetailPowerstat3.loadurl(detail.images)
         }
 
     }
