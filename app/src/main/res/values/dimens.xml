@@ -30,7 +30,21 @@
         <dimen name="image_height_error">300dp</dimen>
         <dimen name="layout_height">300dp</dimen>
 
+    <!--Dimens detail-->
+        <!--Margins-->
+        <dimen name="layout_detail_margin">10dp</dimen>
+        <dimen name="margin_top_NumToImage">7dp</dimen>
+        <dimen name="margin_top_ImageToNum">30dp</dimen>
+        <dimen name="margin_start_ImageToImage">32dp</dimen>
 
+        <!--Image-->
+        <dimen name="height_image_detail">270dp</dimen>
+        <dimen name="width_image_powerStats">100dp</dimen>
+        <dimen name="height_image_powerStats">100dp</dimen>
 
+        <!--Text-->
+        <dimen name="margin_detail_text_name">15dp</dimen>
+        <dimen name="margin_top_detail_text_fullName">10dp</dimen>
+        <dimen name="margin_end_detail_text_good">15dp</dimen>
 
 </resources>

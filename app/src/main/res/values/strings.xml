@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">SuperHeroes</string>
+
+
+    <!--View Detail-->
     <string name="good">GOOD</string>
+    <string name="intelligence">Inteligencia</string>
+    <string name="velocity">Velocidad</string>
+    <string name="combat">Combate</string>
 </resources>

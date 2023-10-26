@@ -5,19 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".presentation.SuperHeroesDetailActivity"
-    android:layout_margin="10dp">
+    android:layout_margin="@dimen/layout_detail_margin">
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/imageDetail"
         android:layout_width="match_parent"
-        android:layout_height="270dp"
+        android:layout_height="@dimen/height_image_detail"
         android:scaleType="centerCrop"
         tools:src="@tools:sample/avatars"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
     <TextView
         android:id="@+id/detailName"
-        android:layout_margin="15dp"
+        android:layout_margin="@dimen/margin_detail_text_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text="Spider-Man"
@@ -25,7 +25,7 @@
         app:layout_constraintTop_toBottomOf="@id/imageDetail"/>
     <TextView
         android:id="@+id/detailFullName"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/margin_top_detail_text_fullName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="@id/detailName"
@@ -34,7 +34,7 @@
 
     <TextView
         android:id="@+id/good"
-        android:layout_marginEnd="5dp"
+        android:layout_marginEnd="@dimen/margin_end_detail_text_good"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
@@ -42,5 +42,92 @@
         android:text="@string/good"
         app:layout_constraintEnd_toEndOf="@id/imageDetail"
         app:layout_constraintTop_toTopOf="@id/detailName"/>
+
+    <TextView
+        android:id="@+id/intelillence"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        app:layout_constraintStart_toStartOf="@id/imageDetailPowerstat1"
+        app:layout_constraintEnd_toEndOf="@id/imageDetailPowerstat1"
+        app:layout_constraintTop_toBottomOf="@id/detailFullName"
+        app:layout_constraintBottom_toTopOf="@id/imageDetailPowerstat1"
+        android:text="@string/intelligence"/>
+
+    <TextView
+        android:id="@+id/velocity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/imageDetailPowerstat2"
+        app:layout_constraintEnd_toEndOf="@id/imageDetailPowerstat2"
+        app:layout_constraintTop_toBottomOf="@id/detailFullName"
+        app:layout_constraintBottom_toTopOf="@id/imageDetailPowerstat1"
+        android:text="@string/velocity"/>
+
+    <TextView
+        android:id="@+id/combat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/imageDetailPowerstat3"
+        app:layout_constraintEnd_toEndOf="@id/imageDetailPowerstat3"
+        app:layout_constraintTop_toBottomOf="@id/detailFullName"
+        app:layout_constraintBottom_toTopOf="@id/imageDetailPowerstat3"
+        android:text="@string/combat"/>
+
+    <TextView
+        android:id="@+id/numIntelillence"
+        android:layout_marginTop="@dimen/margin_top_NumToImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@id/imageDetailPowerstat1"
+        app:layout_constraintStart_toStartOf="@id/imageDetailPowerstat1"
+        app:layout_constraintTop_toBottomOf="@id/intelillence"
+        tools:text="10"/>
+
+    <TextView
+        android:id="@+id/numVelocity"
+        android:layout_marginTop="@dimen/margin_top_NumToImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@id/imageDetailPowerstat2"
+        app:layout_constraintStart_toStartOf="@id/imageDetailPowerstat2"
+        app:layout_constraintTop_toBottomOf="@id/velocity"
+        tools:text="12"/>
+    <TextView
+        android:id="@+id/numCombat"
+        android:layout_marginTop="@dimen/margin_top_NumToImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@id/imageDetailPowerstat3"
+        app:layout_constraintStart_toStartOf="@id/imageDetailPowerstat3"
+        app:layout_constraintTop_toBottomOf="@id/combat"
+        tools:text="12"/>
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/imageDetailPowerstat1"
+        android:layout_marginTop="@dimen/margin_top_ImageToNum"
+        android:layout_width="@dimen/width_image_powerStats"
+        android:layout_height="@dimen/height_image_powerStats"
+        app:layout_constraintStart_toStartOf="@id/detailFullName"
+        app:layout_constraintTop_toBottomOf="@id/numIntelillence"
+        tools:src="@tools:sample/avatars"/>
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/imageDetailPowerstat2"
+        android:layout_width="@dimen/width_image_powerStats"
+        android:layout_height="@dimen/height_image_powerStats"
+        android:layout_marginStart="@dimen/margin_start_ImageToImage"
+        app:layout_constraintStart_toEndOf="@id/imageDetailPowerstat1"
+        app:layout_constraintTop_toTopOf="@id/imageDetailPowerstat1"
+        tools:src="@tools:sample/avatars"/>
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/imageDetailPowerstat3"
+        android:layout_width="@dimen/width_image_powerStats"
+        android:layout_height="@dimen/height_image_powerStats"
+        app:layout_constraintEnd_toEndOf="@id/good"
+        app:layout_constraintTop_toTopOf="@id/imageDetailPowerstat2"
+        tools:src="@tools:sample/avatars"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
