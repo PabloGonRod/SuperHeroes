@@ -11,6 +11,8 @@ import com.pgonrod.superheroes.data.work.remote.api.WorkApiModel
 import com.pgonrod.superheroes.domain.SuperHero
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.lang.Exception
+import java.net.UnknownHostException
 import java.util.concurrent.TimeoutException
 
 class ApiClient {
@@ -31,6 +33,8 @@ class ApiClient {
     fun buildApiEndPoints() = createRetrofitClient().create(ApiService::class.java)
 
     suspend fun getSuperHeroes(): Either<ErrorApp, List<SuperHeroApiModel>>  {
+
+        try {
             val superheroes = apiService.getSuperHeroesFeed()
 
             if (superheroes.isSuccessful){
@@ -38,6 +42,14 @@ class ApiClient {
             } else {
                 return ErrorApp.InternetErrorApp.left()
             }
+        }catch (ex: TimeoutException){
+            return ErrorApp.InternetErrorApp.left()
+        }catch (ex: UnknownHostException){
+            return ErrorApp.InternetErrorApp.left()
+        }catch (ex: RuntimeException){
+            return ErrorApp.InternetErrorApp.left()
+        }
+
     }
 
     suspend fun getSuperHeroe(heroId: Int) : Either<ErrorApp, SuperHeroApiModel?>{
