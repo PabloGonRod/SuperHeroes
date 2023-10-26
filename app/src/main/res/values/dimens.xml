@@ -23,7 +23,7 @@
 
         <!--Icon-->
         <dimen name="width_icon">30dp</dimen>
-        <dimen name="height_icon">30dp</dimen>
+        <dimen name="height_icon">50dp</dimen>
 
         <!--View Error-->
         <dimen name="text_size_error">50sp</dimen>
