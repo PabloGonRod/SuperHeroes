@@ -2,11 +2,8 @@ package com.pgonrod.superheroes.presentation.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.pgonrod.superheroes.R
-import com.pgonrod.superheroes.domain.GetSuperHeroUseCase
-import com.pgonrod.superheroes.presentation.SuperHeroDetailImageDiffUtil
 
 class SuperHeroImageDetailAdapter: RecyclerView.Adapter<SuperHeroDetailHolder>() {
 
