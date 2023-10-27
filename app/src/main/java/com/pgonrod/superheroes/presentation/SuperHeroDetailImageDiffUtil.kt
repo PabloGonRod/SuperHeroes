@@ -7,10 +7,10 @@ class SuperHeroDetailImageDiffUtil: DiffUtil.ItemCallback<GetSuperHeroUseCase.Su
     override fun areItemsTheSame(
         oldItem: GetSuperHeroUseCase.SuperHeroId,
         newItem: GetSuperHeroUseCase.SuperHeroId
-    ): Boolean = oldItem.images == newItem.images
+    ): Boolean = oldItem.imageMain == newItem.imageMain
 
     override fun areContentsTheSame(
         oldItem: GetSuperHeroUseCase.SuperHeroId,
         newItem: GetSuperHeroUseCase.SuperHeroId
-    ): Boolean = oldItem.images == newItem.images
+    ): Boolean = oldItem.imageMain == newItem.imageMain
 }

@@ -48,30 +48,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:maxLines="1"
-        app:layout_constraintStart_toStartOf="@id/imageDetailPowerstat1"
-        app:layout_constraintEnd_toEndOf="@id/imageDetailPowerstat1"
+        android:layout_marginTop="15dp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/detailFullName"
-        app:layout_constraintBottom_toTopOf="@id/imageDetailPowerstat1"
         android:text="@string/intelligence"/>
 
     <TextView
         android:id="@+id/velocity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@id/imageDetailPowerstat2"
-        app:layout_constraintEnd_toEndOf="@id/imageDetailPowerstat2"
-        app:layout_constraintTop_toBottomOf="@id/detailFullName"
-        app:layout_constraintBottom_toTopOf="@id/imageDetailPowerstat1"
+        app:layout_constraintStart_toStartOf="@id/intelillence"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/intelillence"
         android:text="@string/velocity"/>
 
     <TextView
         android:id="@+id/combat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@id/imageDetailPowerstat3"
-        app:layout_constraintEnd_toEndOf="@id/imageDetailPowerstat3"
-        app:layout_constraintTop_toBottomOf="@id/detailFullName"
-        app:layout_constraintBottom_toTopOf="@id/imageDetailPowerstat3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/velocity"
         android:text="@string/combat"/>
 
     <TextView
@@ -79,8 +75,8 @@
         android:layout_marginTop="@dimen/margin_top_NumToImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="@id/imageDetailPowerstat1"
-        app:layout_constraintStart_toStartOf="@id/imageDetailPowerstat1"
+        app:layout_constraintEnd_toEndOf="@id/intelillence"
+        app:layout_constraintStart_toStartOf="@id/intelillence"
         app:layout_constraintTop_toBottomOf="@id/intelillence"
         tools:text="10"/>
 
@@ -89,8 +85,8 @@
         android:layout_marginTop="@dimen/margin_top_NumToImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="@id/imageDetailPowerstat2"
-        app:layout_constraintStart_toStartOf="@id/imageDetailPowerstat2"
+        app:layout_constraintEnd_toEndOf="@id/velocity"
+        app:layout_constraintStart_toStartOf="@id/velocity"
         app:layout_constraintTop_toBottomOf="@id/velocity"
         tools:text="12"/>
     <TextView
@@ -98,16 +94,19 @@
         android:layout_marginTop="@dimen/margin_top_NumToImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="@id/imageDetailPowerstat3"
-        app:layout_constraintStart_toStartOf="@id/imageDetailPowerstat3"
+        app:layout_constraintEnd_toEndOf="@id/combat"
+        app:layout_constraintStart_toStartOf="@id/combat"
         app:layout_constraintTop_toBottomOf="@id/combat"
         tools:text="12"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/imagelist"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/numIntelillence"
+        app:layout_constraintStart_toStartOf="parent"
         tools:listitem="@layout/view_item_images_superheroes_detail"/>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

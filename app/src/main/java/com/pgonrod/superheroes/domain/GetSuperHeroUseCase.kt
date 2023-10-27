@@ -23,7 +23,8 @@ class GetSuperHeroUseCase(
             powerstats!!.intelligence,
             powerstats.speed,
             powerstats.combat,
-            hero.getUrlImagesL()
+            hero.getUrlImagesL(),
+            hero.images
         ).right()
     }
 
@@ -33,6 +34,7 @@ class GetSuperHeroUseCase(
         val intelligence: Int,
         val speed: Int,
         val combat: Int,
-        val images: String
+        val imageMain: String,
+        val images: List<String>
     )
 }

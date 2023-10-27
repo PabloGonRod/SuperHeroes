@@ -9,7 +9,7 @@ import com.pgonrod.superheroes.domain.GetSuperHeroUseCase
 class SuperHeroDetailHolder(view: View): RecyclerView.ViewHolder(view) {
 
     val img = ViewItemImagesSuperheroesDetailBinding.bind(view)
-    fun bindDetail(image: GetSuperHeroUseCase.SuperHeroId){
-        img.imageDetailPowerstat1.loadurl(image.images)
+    fun bindDetail(image: String){
+        img.imageDetailPowerstat1.loadurl(image)
     }
 }

@@ -1,15 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imageDetailPowerstat1"
+            android:layout_width="@dimen/width_image_powerStats"
+            android:layout_height="@dimen/height_image_powerStats"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:src="@tools:sample/avatars"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/imageDetailPowerstat1"
-        android:layout_width="@dimen/width_image_powerStats"
-        android:layout_height="@dimen/height_image_powerStats"
-        android:layout_marginStart="10dp"
-        tools:src="@tools:sample/avatars"/>
+
 
 
 
