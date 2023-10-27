@@ -5,13 +5,11 @@ import com.pgonrod.app.errors.ErrorApp
 import com.pgonrod.app.errors.left
 import com.pgonrod.app.errors.right
 import com.pgonrod.superheroes.data.biography.remote.api.BiographyApiModel
-import com.pgonrod.superheroes.data.powerstats.remote.PowerStatsApiModel
+import com.pgonrod.superheroes.data.powerstats.remote.api.PowerStatsApiModel
 import com.pgonrod.superheroes.data.superhero.remote.api.SuperHeroApiModel
 import com.pgonrod.superheroes.data.work.remote.api.WorkApiModel
-import com.pgonrod.superheroes.domain.SuperHero
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.lang.Exception
 import java.net.UnknownHostException
 import java.util.concurrent.TimeoutException
 

@@ -1,4 +1,4 @@
-package com.pgonrod.superheroes.data.powerstats.remote
+package com.pgonrod.superheroes.data.powerstats.remote.api
 
 import com.google.gson.annotations.SerializedName
 

@@ -1,4 +1,4 @@
-package com.pgonrod.superheroes.data
+package com.pgonrod.superheroes.data.superhero
 
 import com.pgonrod.app.errors.Either
 import com.pgonrod.app.errors.ErrorApp
@@ -10,8 +10,8 @@ import com.pgonrod.superheroes.domain.SuperHero
 import com.pgonrod.superheroes.domain.SuperHeroRepository
 
 class SuperheroesDataRepository (
-    private val localsource: XmlSuperHeroLocalDataSource,
-    private val remotesource: SuperHeroApiRemoteDataSource
+    private val localsource: SuperHeroLocalDataSource,
+    private val remotesource: SuperHeroRemoteDataSource
 ): SuperHeroRepository {
     override suspend fun getAllSuperHeroes(): Either<ErrorApp, List<SuperHero>> {
         val list = localsource.getAllSuperHeroes()

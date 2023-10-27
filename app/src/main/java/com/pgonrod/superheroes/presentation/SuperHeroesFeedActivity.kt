@@ -3,7 +3,6 @@ package com.pgonrod.superheroes.presentation
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,7 +16,7 @@ import com.pgonrod.app.extensions.hide
 import com.pgonrod.app.extensions.visible
 import com.pgonrod.superheroes.R
 import com.pgonrod.superheroes.data.ApiClient
-import com.pgonrod.superheroes.data.SuperheroesDataRepository
+import com.pgonrod.superheroes.data.superhero.SuperheroesDataRepository
 import com.pgonrod.superheroes.data.biography.remote.api.BiographyApiRemoteDataSource
 import com.pgonrod.superheroes.data.superhero.local.XmlSuperHeroLocalDataSource
 import com.pgonrod.superheroes.data.superhero.remote.api.SuperHeroApiRemoteDataSource
