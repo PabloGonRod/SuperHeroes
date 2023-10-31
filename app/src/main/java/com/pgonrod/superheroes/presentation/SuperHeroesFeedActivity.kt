@@ -16,10 +16,14 @@ import com.pgonrod.app.extensions.hide
 import com.pgonrod.app.extensions.visible
 import com.pgonrod.superheroes.R
 import com.pgonrod.superheroes.data.ApiClient
+import com.pgonrod.superheroes.data.biography.BiographyDataRepository
+import com.pgonrod.superheroes.data.biography.local.XmlBiographyLocalDataSource
 import com.pgonrod.superheroes.data.superhero.SuperheroesDataRepository
 import com.pgonrod.superheroes.data.biography.remote.api.BiographyApiRemoteDataSource
 import com.pgonrod.superheroes.data.superhero.local.XmlSuperHeroLocalDataSource
 import com.pgonrod.superheroes.data.superhero.remote.api.SuperHeroApiRemoteDataSource
+import com.pgonrod.superheroes.data.work.WorkDataRepository
+import com.pgonrod.superheroes.data.work.local.XmlWorkLocalDataSource
 import com.pgonrod.superheroes.data.work.remote.api.WorkApiRemoteDataSource
 import com.pgonrod.superheroes.databinding.ActivitySuperHeroesFeedBinding
 import com.pgonrod.superheroes.domain.GetAllSuperHeroUseCase
@@ -39,11 +43,17 @@ class SuperHeroesFeedActivity : AppCompatActivity() {
         SuperHeroesFeedViewModel(
             GetAllSuperHeroUseCase(
                 SuperheroesDataRepository(
-                    XmlSuperHeroLocalDataSource(getSharedPreferences("SuperHeroes", MODE_PRIVATE)),
+                    XmlSuperHeroLocalDataSource(getSharedPreferences("Superheroes", MODE_PRIVATE)),
                     SuperHeroApiRemoteDataSource(ApiClient())
                 ),
-                WorkApiRemoteDataSource(ApiClient()),
-                BiographyApiRemoteDataSource(ApiClient())
+                WorkDataRepository(
+                    XmlWorkLocalDataSource(getSharedPreferences("Work", MODE_PRIVATE)),
+                    WorkApiRemoteDataSource(ApiClient())
+                ),
+                BiographyDataRepository(
+                    XmlBiographyLocalDataSource(getSharedPreferences("Biography", MODE_PRIVATE)),
+                    BiographyApiRemoteDataSource(ApiClient())
+                )
             )
         )
     }

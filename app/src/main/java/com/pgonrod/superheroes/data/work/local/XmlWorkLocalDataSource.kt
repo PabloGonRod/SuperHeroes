@@ -25,7 +25,7 @@ class XmlWorkLocalDataSource(val sharedPref: SharedPreferences) {
         return true.right()
     }
 
-    fun getWork(heroId: Int): Either<ErrorApp, Work?> {
+    fun getWork(heroId: Int): Either<ErrorApp, Work> {
         try {
             val work = sharedPref.getString(heroId.toString(), null).let {
                 gson.fromJson(it, Work::class.java)

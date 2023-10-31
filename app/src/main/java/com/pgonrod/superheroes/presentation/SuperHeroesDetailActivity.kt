@@ -7,8 +7,12 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.pgonrod.app.extensions.loadurl
 import com.pgonrod.superheroes.data.ApiClient
+import com.pgonrod.superheroes.data.biography.BiographyDataRepository
+import com.pgonrod.superheroes.data.biography.local.XmlBiographyLocalDataSource
 import com.pgonrod.superheroes.data.superhero.SuperheroesDataRepository
 import com.pgonrod.superheroes.data.biography.remote.api.BiographyApiRemoteDataSource
+import com.pgonrod.superheroes.data.powerstats.PowerStatsDataRepository
+import com.pgonrod.superheroes.data.powerstats.local.XmlPowerStatsLocalDataSource
 import com.pgonrod.superheroes.data.powerstats.remote.api.PowerStatsApiRemoteDataSource
 import com.pgonrod.superheroes.data.superhero.local.XmlSuperHeroLocalDataSource
 import com.pgonrod.superheroes.data.superhero.remote.api.SuperHeroApiRemoteDataSource
@@ -26,6 +30,18 @@ class SuperHeroesDetailActivity : AppCompatActivity() {
     val viewModel: SuperHeroesDetailViewModel by lazy {
         SuperHeroesDetailViewModel(
             GetSuperHeroUseCase(
+                SuperheroesDataRepository(
+                    XmlSuperHeroLocalDataSource(getSharedPreferences("Superheroes", MODE_PRIVATE)),
+                    SuperHeroApiRemoteDataSource(ApiClient())
+                ),
+                BiographyDataRepository(
+                    XmlBiographyLocalDataSource(getSharedPreferences("Biography", MODE_PRIVATE)),
+                    BiographyApiRemoteDataSource(ApiClient())
+                ),
+                PowerStatsDataRepository(
+                    XmlPowerStatsLocalDataSource(getSharedPreferences("PowerStats", MODE_PRIVATE)),
+                    PowerStatsApiRemoteDataSource(ApiClient())
+                )
 
             )
         )
