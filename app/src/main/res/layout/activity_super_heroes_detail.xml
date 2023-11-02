@@ -38,7 +38,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
-        android:textColor="@color/blue"
+        android:textColor="@color/seed"
         android:text="@string/good"
         app:layout_constraintEnd_toEndOf="@id/imageDetail"
         app:layout_constraintTop_toTopOf="@id/detailName"/>
