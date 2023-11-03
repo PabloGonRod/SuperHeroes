@@ -3,6 +3,8 @@ package com.pgonrod.superheroes.presentation
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
+import android.view.View
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -36,7 +38,7 @@ class SuperHeroesFeedActivity : AppCompatActivity() {
     private val superheroAdapter = SuperHeroAdapter()
 
     private val skeleton: Skeleton by lazy {
-        binding.superheroeFeed.applySkeleton(R.layout.view_item_superheroe_feed,5)
+        binding.superheroeFeed.applySkeleton(R.layout.view_item_superheroe_feed, 5)
     }
 
     val viewModel: SuperHeroesFeedViewModel by lazy {
@@ -57,6 +59,7 @@ class SuperHeroesFeedActivity : AppCompatActivity() {
             )
         )
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySuperHeroesFeedBinding.inflate(layoutInflater)
@@ -66,13 +69,14 @@ class SuperHeroesFeedActivity : AppCompatActivity() {
         setupView()
     }
 
-    fun setupView(){
+    fun setupView() {
         binding.apply {
             superheroeFeed.apply {
                 layoutManager = LinearLayoutManager(
                     this@SuperHeroesFeedActivity,
                     LinearLayoutManager.VERTICAL,
-                    false)
+                    false
+                )
                 adapter = superheroAdapter
 
             }
@@ -80,16 +84,16 @@ class SuperHeroesFeedActivity : AppCompatActivity() {
         }
     }
 
-    fun setupObserver(){
-        val observer = Observer<SuperHeroesFeedViewModel.SuperHeroUiState>{ uiState->
+    fun setupObserver() {
+        val observer = Observer<SuperHeroesFeedViewModel.SuperHeroUiState> { uiState ->
 
-            if (uiState.isloading){
+            if (uiState.isloading) {
                 skeleton.showSkeleton()
-            }else{
+            } else {
                 skeleton.showOriginal()
-                if (uiState.error != null){
+                if (uiState.error != null) {
                     showError(uiState.error)
-                }else{
+                } else {
                     val list = uiState.superherolist
                     superheroAdapter.submitList(list)
                     superheroAdapter.setOnClickDetail {
@@ -97,34 +101,49 @@ class SuperHeroesFeedActivity : AppCompatActivity() {
                     }
                 }
             }
-            binding.filter.addTextChangedListener {filter ->
-                val filtered = uiState.superherolist.filter { superhero -> superhero.name.contains(filter.toString()) }
+            binding.filter.addTextChangedListener { filter ->
+                val filtered =
+                    uiState.superherolist.filter { superhero -> superhero.name.contains(filter.toString()) }
                 superheroAdapter.submitList(filtered)
             }
         }
         viewModel.uiState.observe(this, observer)
     }
 
-    fun showError(error: ErrorApp){
+    fun showError(error: ErrorApp) {
         binding.apply {
             viewError.layoutError.visible()
             layoutFeed.hide()
         }
-        when(error){
+        when (error) {
             ErrorApp.InternetErrorApp -> errorInternet()
             ErrorApp.UnknowErrorApp -> errorUnknown()
             ErrorApp.DatabaseErrorApp -> errorDatabase()
         }
 
     }
+
     fun errorUnknown() = binding.viewError.errorUnknown()
     fun errorDatabase() = binding.viewError.errorDatabase()
     fun errorInternet() = binding.viewError.errorInternet()
 
-    fun navigateToDetail(id:Int){
+    fun navigateToDetail(id: Int) {
         val intent = Intent(this, SuperHeroesDetailActivity::class.java)
         intent.putExtra("id", id)
         startActivity(intent)
+    }
+
+    fun actionSearch(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_search -> {
+                binding.filter.isEnabled = true
+                true
+            }
+
+            else -> {
+                super.onOptionsItemSelected(item)
+            }
+        }
     }
 
 
