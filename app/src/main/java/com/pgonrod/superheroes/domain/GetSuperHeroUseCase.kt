@@ -22,7 +22,7 @@ class GetSuperHeroUseCase(
             powerstats!!.intelligence,
             powerstats.speed,
             powerstats.combat,
-            hero.getUrlImagesL(),
+            hero.getUrlImagesXL(),
             hero.images
         ).right()
     }

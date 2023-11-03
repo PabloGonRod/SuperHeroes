@@ -40,7 +40,7 @@
         <dimen name="margin_start_ImageToImage">32dp</dimen>
 
         <!--Image-->
-        <dimen name="height_image_detail">270dp</dimen>
+        <dimen name="height_image_detail">500dp</dimen>
         <dimen name="width_image_powerStats">100dp</dimen>
         <dimen name="height_image_powerStats">100dp</dimen>
 
