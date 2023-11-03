@@ -3,8 +3,10 @@ package com.pgonrod.superheroes.presentation
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -67,6 +69,7 @@ class SuperHeroesFeedActivity : AppCompatActivity() {
         setupObserver()
         viewModel.loadSuperheroes()
         setupView()
+        actionSearch()
     }
 
     fun setupView() {
@@ -113,7 +116,7 @@ class SuperHeroesFeedActivity : AppCompatActivity() {
     fun showError(error: ErrorApp) {
         binding.apply {
             viewError.layoutError.visible()
-            layoutFeed.hide()
+            superheroeFeed.hide()
         }
         when (error) {
             ErrorApp.InternetErrorApp -> errorInternet()
@@ -133,17 +136,13 @@ class SuperHeroesFeedActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    fun actionSearch(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.action_search -> {
-                binding.filter.isEnabled = true
-                true
-            }
 
-            else -> {
-                super.onOptionsItemSelected(item)
-            }
+
+    private fun actionSearch() {
+        binding.fab.setOnClickListener {
+            binding.filter.visible()
         }
+
     }
 
 
