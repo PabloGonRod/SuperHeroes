@@ -1,6 +1,6 @@
 package com.pgonrod.superheroes.data
 
-import com.pgonrod.superheroes.data.biography.api.BiographyApiModel
+import com.pgonrod.superheroes.data.biography.remote.api.BiographyApiModel
 import com.pgonrod.superheroes.data.superhero.remote.api.SuperHeroApiModel
 import com.pgonrod.superheroes.data.work.remote.api.WorkApiModel
 import retrofit2.Call

@@ -1,19 +1,26 @@
 package com.pgonrod.superheroes
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import com.pgonrod.superheroes.data.ApiClient
-import com.pgonrod.superheroes.data.biography.api.BiographyApiRemoteDataSource
+import com.pgonrod.superheroes.data.SuperheroesDataRepository
+import com.pgonrod.superheroes.data.biography.remote.api.BiographyApiRemoteDataSource
+import com.pgonrod.superheroes.data.superhero.local.SuperHeroLocalDataSource
+import com.pgonrod.superheroes.data.superhero.local.XmlSuperHeroLocalDataSource
 import com.pgonrod.superheroes.data.superhero.remote.api.SuperHeroApiRemoteDataSource
 import com.pgonrod.superheroes.data.work.remote.api.WorkApiRemoteDataSource
 import com.pgonrod.superheroes.domain.SuperHeroFeed
+import com.pgonrod.superheroes.domain.SuperHeroRepository
 import com.pgonrod.superheroes.domain.urlImages
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,6 +29,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun init(){
+        val useCase = SuperheroesDataRepository(
+            XmlSuperHeroLocalDataSource(getSharedPreferences("SuperHero", MODE_PRIVATE)),
+            SuperHeroApiRemoteDataSource(ApiClient())
+        )
         val apiClient = ApiClient()
         CoroutineScope(Dispatchers.IO).launch {
             val superheroes = SuperHeroApiRemoteDataSource(apiClient).getSuperHeroes()
@@ -45,6 +56,8 @@ class MainActivity : AppCompatActivity() {
                 }
             }
             Log.d("@dev", "Lista unida: $feed")
+            useCase.getAllSuperHeroes()
         }
     }
+
 }

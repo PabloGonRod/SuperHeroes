@@ -1,4 +1,4 @@
-package com.pgonrod.superheroes.data.biography.api
+package com.pgonrod.superheroes.data.biography.remote.api
 
 import com.google.gson.annotations.SerializedName
 
