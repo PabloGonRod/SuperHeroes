@@ -1,17 +1,19 @@
 package com.pgonrod.superheroes.presentation
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.pgonrod.app.extensions.loadurl
-import com.pgonrod.superheroes.R
 import com.pgonrod.superheroes.data.ApiClient
-import com.pgonrod.superheroes.data.SuperheroesDataRepository
+import com.pgonrod.superheroes.data.biography.BiographyDataRepository
+import com.pgonrod.superheroes.data.biography.local.XmlBiographyLocalDataSource
+import com.pgonrod.superheroes.data.superhero.SuperheroesDataRepository
 import com.pgonrod.superheroes.data.biography.remote.api.BiographyApiRemoteDataSource
-import com.pgonrod.superheroes.data.powerstats.remote.PowerStatsApiRemoteDataSource
+import com.pgonrod.superheroes.data.powerstats.PowerStatsDataRepository
+import com.pgonrod.superheroes.data.powerstats.local.XmlPowerStatsLocalDataSource
+import com.pgonrod.superheroes.data.powerstats.remote.api.PowerStatsApiRemoteDataSource
 import com.pgonrod.superheroes.data.superhero.local.XmlSuperHeroLocalDataSource
 import com.pgonrod.superheroes.data.superhero.remote.api.SuperHeroApiRemoteDataSource
 import com.pgonrod.superheroes.databinding.ActivitySuperHeroesDetailBinding
@@ -29,11 +31,19 @@ class SuperHeroesDetailActivity : AppCompatActivity() {
         SuperHeroesDetailViewModel(
             GetSuperHeroUseCase(
                 SuperheroesDataRepository(
-                    XmlSuperHeroLocalDataSource(getSharedPreferences("SuperHeroes", MODE_PRIVATE)),
+                    XmlSuperHeroLocalDataSource(getSharedPreferences("Superheroes", MODE_PRIVATE)),
                     SuperHeroApiRemoteDataSource(ApiClient())
                 ),
-                BiographyApiRemoteDataSource(ApiClient()),
-                PowerStatsApiRemoteDataSource(ApiClient()))
+                BiographyDataRepository(
+                    XmlBiographyLocalDataSource(getSharedPreferences("Biography", MODE_PRIVATE)),
+                    BiographyApiRemoteDataSource(ApiClient())
+                ),
+                PowerStatsDataRepository(
+                    XmlPowerStatsLocalDataSource(getSharedPreferences("PowerStats", MODE_PRIVATE)),
+                    PowerStatsApiRemoteDataSource(ApiClient())
+                )
+
+            )
         )
     }
     override fun onCreate(savedInstanceState: Bundle?) {

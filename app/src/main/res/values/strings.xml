@@ -8,4 +8,5 @@
     <string name="velocity">Velocidad</string>
     <string name="combat">Combate</string>
     <string name="filter_nombre_superheroes">Nombre Superheroes</string>
+    <string name="search_filter">Buscar</string>
 </resources>

@@ -4,13 +4,12 @@ import com.pgonrod.app.errors.Either
 import com.pgonrod.app.errors.ErrorApp
 import com.pgonrod.app.errors.right
 import com.pgonrod.superheroes.data.biography.remote.api.BiographyApiRemoteDataSource
-import com.pgonrod.superheroes.data.powerstats.remote.PowerStatsApiRemoteDataSource
-import com.pgonrod.superheroes.data.work.remote.api.WorkApiRemoteDataSource
+import com.pgonrod.superheroes.data.powerstats.remote.api.PowerStatsApiRemoteDataSource
 
 class GetSuperHeroUseCase(
     private val superheroRepository: SuperHeroRepository,
-    private val biographyRepository: BiographyApiRemoteDataSource,
-    private val powerStatsRepository: PowerStatsApiRemoteDataSource
+    private val biographyRepository: BiographyRepository,
+    private val powerStatsRepository: PowerStatsRepository
 ) {
 
     suspend operator fun invoke(heroId: Int): Either<ErrorApp, SuperHeroId> {
@@ -23,7 +22,7 @@ class GetSuperHeroUseCase(
             powerstats!!.intelligence,
             powerstats.speed,
             powerstats.combat,
-            hero.getUrlImagesL(),
+            hero.getUrlImagesXL(),
             hero.images
         ).right()
     }

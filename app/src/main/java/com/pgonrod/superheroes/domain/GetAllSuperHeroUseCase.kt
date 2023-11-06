@@ -10,8 +10,8 @@ import com.pgonrod.superheroes.data.work.remote.api.WorkApiRemoteDataSource
 
 class GetAllSuperHeroUseCase (
     private val superheroRepository: SuperHeroRepository,
-    private val workRepository: WorkApiRemoteDataSource,
-    private val biographyRepository: BiographyApiRemoteDataSource) {
+    private val workRepository: WorkRepository,
+    private val biographyRepository: BiographyRepository) {
     suspend operator fun invoke(): Either<ErrorApp, List<SuperHeroFeed>> {
         val superheroes = superheroRepository.getAllSuperHeroes()
 

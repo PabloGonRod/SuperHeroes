@@ -1,9 +1,9 @@
-package com.pgonrod.superheroes.data.powerstats.remote
+package com.pgonrod.superheroes.data.powerstats.remote.api
 
 import com.pgonrod.app.errors.Either
 import com.pgonrod.app.errors.ErrorApp
 import com.pgonrod.superheroes.data.ApiClient
-import com.pgonrod.superheroes.data.powerstats.PowerStatsRemoteDataSource
+import com.pgonrod.superheroes.data.powerstats.remote.PowerStatsRemoteDataSource
 import com.pgonrod.superheroes.domain.Powerstats
 
 class PowerStatsApiRemoteDataSource(val apiClient: ApiClient): PowerStatsRemoteDataSource {
