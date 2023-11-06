@@ -5,6 +5,7 @@ import com.pgonrod.app.errors.ErrorApp
 import com.pgonrod.app.errors.left
 import com.pgonrod.app.errors.right
 import com.pgonrod.superheroes.data.biography.remote.api.BiographyApiModel
+import com.pgonrod.superheroes.data.powerstats.remote.PowerStatsApiModel
 import com.pgonrod.superheroes.data.superhero.remote.api.SuperHeroApiModel
 import com.pgonrod.superheroes.data.work.remote.api.WorkApiModel
 import com.pgonrod.superheroes.domain.SuperHero
@@ -53,5 +54,12 @@ class ApiClient {
         val call = apiService.getbiography(heroId)
         return call.body().right()
     }
+
+    suspend fun getPowerStats(heroId: Int) : Either<ErrorApp, PowerStatsApiModel?>{
+        val call = apiService.getpowerstats(heroId)
+        return call.body().right()
+    }
+
+
 
 }

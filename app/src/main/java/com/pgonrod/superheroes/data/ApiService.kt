@@ -1,6 +1,7 @@
 package com.pgonrod.superheroes.data
 
 import com.pgonrod.superheroes.data.biography.remote.api.BiographyApiModel
+import com.pgonrod.superheroes.data.powerstats.remote.PowerStatsApiModel
 import com.pgonrod.superheroes.data.superhero.remote.api.SuperHeroApiModel
 import com.pgonrod.superheroes.data.work.remote.api.WorkApiModel
 import retrofit2.Call
@@ -21,4 +22,7 @@ interface ApiService {
 
     @GET("biography/{heroId}.json")
     suspend fun getbiography(@Path("heroId") heroId: Int): Response<BiographyApiModel>
+
+    @GET("powerstats/{heroId}.json")
+    suspend fun getpowerstats(@Path("heroId") heroId: Int): Response<PowerStatsApiModel>
 }
