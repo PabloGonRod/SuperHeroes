@@ -5,5 +5,5 @@ import com.pgonrod.app.errors.ErrorApp
 import com.pgonrod.superheroes.domain.Work
 
 interface WorkRemoteDataSource {
-    fun getWork(heroId: Int) : Either<ErrorApp, Work?>
+    suspend fun getWork(heroId: Int) : Either<ErrorApp, Work?>
 }

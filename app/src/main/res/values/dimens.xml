@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!--Dimens Activity_Films_View-->
+    <dimen name="linear_padding">8dp</dimen>
+    <dimen name="text_size_films">40sp</dimen>
+
     <!--Dimens viewItem-->
         <!--Margins-->
         <dimen name="margin_card_view">10dp</dimen>
@@ -19,6 +24,11 @@
         <!--Icon-->
         <dimen name="width_icon">30dp</dimen>
         <dimen name="height_icon">30dp</dimen>
+
+        <!--View Error-->
+        <dimen name="text_size_error">50sp</dimen>
+        <dimen name="image_height_error">300dp</dimen>
+        <dimen name="layout_height">300dp</dimen>
 
 
 

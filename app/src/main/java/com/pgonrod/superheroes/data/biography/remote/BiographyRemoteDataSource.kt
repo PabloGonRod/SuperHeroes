@@ -5,6 +5,6 @@ import com.pgonrod.app.errors.ErrorApp
 import com.pgonrod.superheroes.domain.Biography
 
 interface BiographyRemoteDataSource {
-    fun getBiography(heroId: Int) : Either<ErrorApp, Biography?>
+    suspend fun getBiography(heroId: Int) : Either<ErrorApp, Biography?>
 
 }

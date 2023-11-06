@@ -13,7 +13,7 @@ class SuperheroesDataRepository (
     private val localsource: XmlSuperHeroLocalDataSource,
     private val remotesource: SuperHeroApiRemoteDataSource
 ): SuperHeroRepository {
-    override fun getAllSuperHeroes(): Either<ErrorApp, List<SuperHero>> {
+    override suspend fun getAllSuperHeroes(): Either<ErrorApp, List<SuperHero>> {
         val list = localsource.getAllSuperHeroes()
         return if (list.isLeft() || list.get().isEmpty()){
                 remotesource.getSuperHeroes().map { superheroes ->

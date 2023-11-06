@@ -11,14 +11,14 @@ import retrofit2.http.Path
 interface ApiService {
 
     @GET("all.json")
-    fun getSuperHeroesFeed(): Call<List<SuperHeroApiModel>>
+    suspend fun getSuperHeroesFeed(): Response<List<SuperHeroApiModel>>
 
     @GET("id/{heroId}.json")
-    fun getSuperHero(@Path("heroId") heroId: Int): Call<SuperHeroApiModel>
+    suspend fun getSuperHero(@Path("heroId") heroId: Int): Response<SuperHeroApiModel>
 
     @GET("work/{heroId}.json")
-    fun getWork(@Path("heroId") heroId: Int): Call<WorkApiModel>
+    suspend fun getWork(@Path("heroId") heroId: Int): Response<WorkApiModel>
 
     @GET("biography/{heroId}.json")
-    fun getbiography(@Path("heroId") heroId: Int): Call<BiographyApiModel>
+    suspend fun getbiography(@Path("heroId") heroId: Int): Response<BiographyApiModel>
 }

@@ -12,7 +12,7 @@ class GetAllSuperHeroUseCase (
     private val superheroRepository: SuperHeroRepository,
     private val workRepository: WorkApiRemoteDataSource,
     private val biographyRepository: BiographyApiRemoteDataSource) {
-    operator fun invoke(): Either<ErrorApp, List<SuperHeroFeed>> {
+    suspend operator fun invoke(): Either<ErrorApp, List<SuperHeroFeed>> {
         val superheroes = superheroRepository.getAllSuperHeroes()
 
         val list = superheroes.map {
