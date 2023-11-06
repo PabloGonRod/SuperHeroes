@@ -7,10 +7,10 @@ import com.pgonrod.superheroes.databinding.ViewItemSuperheroeFeedBinding
 import com.pgonrod.superheroes.domain.GetAllSuperHeroUseCase
 import com.pgonrod.superheroes.domain.GetSuperHeroUseCase
 
-class SuperHeroViewHolder(val view: View): RecyclerView.ViewHolder(view) {
-
+class SuperHeroViewHolder(view: View): RecyclerView.ViewHolder(view) {
+    val item = ViewItemSuperheroeFeedBinding.bind(view)
     fun bind(superhero: GetAllSuperHeroUseCase.SuperHeroFeed, onClickDetail: ((Int) -> Unit)?){
-        val item = ViewItemSuperheroeFeedBinding.bind(view)
+
         item.apply {
             image.loadurl(superhero.images)
             name.text = superhero.name
