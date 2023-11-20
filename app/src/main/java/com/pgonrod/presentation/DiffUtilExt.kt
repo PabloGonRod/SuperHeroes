@@ -23,22 +23,3 @@ class DiffUtilExt<T>(
 
 }
 
-class DiffUtilExt2<T: Id> : DiffUtil.ItemCallback<T>() {
-
-    override fun areItemsTheSame(oldItem: T, newItem: T): Boolean {
-        return oldItem.idString == newItem.idString
-    }
-
-    override fun areContentsTheSame(oldItem: T , newItem: T ): Boolean {
-        return oldItem == newItem
-    }
-
-
-}
-
-interface Id {
-    val idString: String
-}
-
-
-
