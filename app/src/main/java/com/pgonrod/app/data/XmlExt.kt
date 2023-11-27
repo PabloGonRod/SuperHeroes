@@ -7,9 +7,8 @@ import com.pgonrod.app.errors.ErrorApp
 import com.pgonrod.app.errors.left
 import com.pgonrod.app.errors.right
 
-class XmlExt <C>(context: Context, title: C){
-
-    val sharedpref = context.getSharedPreferences(title.toString(), Context.MODE_PRIVATE)
+class XmlExt(context: Context, title: String){
+    val sharedpref = context.getSharedPreferences(title, Context.MODE_PRIVATE)
     val editor = sharedpref.edit()
     val gson = Gson()
     fun <T : Any> save(genericId: Int, generic: T): Either<ErrorApp, Boolean> {
@@ -34,7 +33,7 @@ class XmlExt <C>(context: Context, title: C){
         }
     }
 
-    fun <T : Any> saveList(model: List<T>, modelId: () -> Int): Either<ErrorApp, List<T>>{
+    fun <T : Any> saveList(model: List<T>, modelId: () -> Unit): Either<ErrorApp, List<T>>{
         return try {
             model.forEach{
                 editor.putString(modelId.invoke().toString(), gson.toJson(model))

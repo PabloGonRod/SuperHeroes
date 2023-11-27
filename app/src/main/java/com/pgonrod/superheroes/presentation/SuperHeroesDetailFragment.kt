@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.pgonrod.app.data.XmlExt
 import com.pgonrod.app.extensions.loadurl
 import com.pgonrod.superheroes.data.ApiClient
 import com.pgonrod.superheroes.data.biography.BiographyDataRepository
@@ -23,6 +24,7 @@ import com.pgonrod.superheroes.data.superhero.local.XmlSuperHeroLocalDataSource
 import com.pgonrod.superheroes.data.superhero.remote.api.SuperHeroApiRemoteDataSource
 import com.pgonrod.superheroes.databinding.FragmentSuperHeroesDetailBinding
 import com.pgonrod.superheroes.domain.GetSuperHeroUseCase
+import com.pgonrod.superheroes.domain.SuperHero
 import com.pgonrod.superheroes.presentation.adapter.SuperHeroImageDetailAdapter
 
 class SuperHeroesDetailFragment : Fragment() {
@@ -37,15 +39,15 @@ class SuperHeroesDetailFragment : Fragment() {
         SuperHeroesDetailViewModel(
             GetSuperHeroUseCase(
                 SuperheroesDataRepository(
-                    XmlSuperHeroLocalDataSource(),
+                    XmlSuperHeroLocalDataSource(XmlExt(requireContext(), "SuperHeroes")),
                     SuperHeroApiRemoteDataSource(ApiClient())
                 ),
                 BiographyDataRepository(
-                    XmlBiographyLocalDataSourceXml(),
+                    XmlBiographyLocalDataSourceXml(XmlExt(requireContext(), "Biography")),
                     BiographyApiRemoteDataSource(ApiClient())
                 ),
                 PowerStatsDataRepository(
-                    XmlPowerStatsLocalDataSource(),
+                    XmlPowerStatsLocalDataSource(XmlExt(requireContext(), "PowerStats")),
                     PowerStatsApiRemoteDataSource(ApiClient())
                 )
 

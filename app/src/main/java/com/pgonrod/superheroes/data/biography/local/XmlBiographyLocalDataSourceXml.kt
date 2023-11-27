@@ -9,19 +9,16 @@ import com.pgonrod.superheroes.domain.Biography
 import com.pgonrod.superheroes.domain.SuperHero
 
 
-class XmlBiographyLocalDataSourceXml: BiographyLocalDataSource{
+class XmlBiographyLocalDataSourceXml(val generic: XmlExt): BiographyLocalDataSource{
 
-    private lateinit var generic: XmlExt<Biography>
 
     override fun saveBiography(heroId: Int, biography: Biography): Either<ErrorApp, Boolean> {
-        generic
         return generic.save(heroId, biography)
 
 
     }
 
     override fun getBiography(heroId: Int): Either<ErrorApp, Biography?> {
-        generic
         return generic.getGenericById(heroId)
     }
 

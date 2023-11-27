@@ -17,7 +17,7 @@ class SuperheroesDataRepository(
         val list = localsource.getAllSuperHeroes()
         return if (list.isLeft() || list.get().isEmpty()){
                 remotesource.getSuperHeroes().map { superheroes ->
-                localsource.saveSuperHeroes(superheroes )
+                localsource.saveSuperHeroes(superheroes)
                 superheroes
             }
         } else{

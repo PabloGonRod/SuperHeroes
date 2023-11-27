@@ -1,23 +1,22 @@
 package com.pgonrod.superheroes.data.superhero.local
 
-import android.content.SharedPreferences
+import android.content.Context
 import com.pgonrod.app.data.XmlExt
 import com.pgonrod.app.errors.Either
 import com.pgonrod.app.errors.ErrorApp
+import com.pgonrod.superheroes.domain.Powerstats
 import com.pgonrod.superheroes.domain.SuperHero
 
-class XmlSuperHeroLocalDataSource : SuperHeroLocalDataSource {
+class XmlSuperHeroLocalDataSource(val generic: XmlExt) : SuperHeroLocalDataSource {
 
-    private lateinit var generic: XmlExt<SuperHero>
-    private lateinit var superheroes: SuperHero
+
     override fun saveSuperHeroes(superHero: List<SuperHero>): Either<ErrorApp, List<SuperHero>> {
-        generic
-        superheroes
-        return generic.saveList(superHero, {superheroes.id})
+
+        return generic.saveList(superHero) { superHero.forEach { it.id } }
     }
 
     override fun getAllSuperHeroes(): Either<ErrorApp, List<SuperHero>> {
-        generic
+
         return generic.getAllGeneric()
     }
 

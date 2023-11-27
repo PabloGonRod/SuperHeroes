@@ -13,6 +13,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.faltenreich.skeletonlayout.Skeleton
 import com.faltenreich.skeletonlayout.applySkeleton
+import com.pgonrod.app.data.XmlExt
 import com.pgonrod.app.errors.ErrorApp
 import com.pgonrod.app.extensions.errorDatabase
 import com.pgonrod.app.extensions.errorInternet
@@ -50,15 +51,15 @@ class SuperHeroesFeedFragment: Fragment() {
         SuperHeroesFeedViewModel(
             GetAllSuperHeroUseCase(
                 SuperheroesDataRepository(
-                    XmlSuperHeroLocalDataSource(),
+                    XmlSuperHeroLocalDataSource(XmlExt(requireContext(), "SuperHeroes")),
                     SuperHeroApiRemoteDataSource(ApiClient())
                 ),
                 WorkDataRepository(
-                    XmlWorkLocalDataSource(),
+                    XmlWorkLocalDataSource(XmlExt(requireContext(), "Work")),
                     WorkApiRemoteDataSource(ApiClient())
                 ),
                 BiographyDataRepository(
-                    XmlBiographyLocalDataSourceXml(),
+                    XmlBiographyLocalDataSourceXml(XmlExt(requireContext(), "Biography")),
                     BiographyApiRemoteDataSource(ApiClient())
                 )
             )

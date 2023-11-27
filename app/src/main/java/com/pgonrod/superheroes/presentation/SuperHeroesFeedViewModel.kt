@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.pgonrod.app.errors.ErrorApp
 import com.pgonrod.superheroes.domain.GetAllSuperHeroUseCase
+import com.pgonrod.superheroes.domain.SuperHero
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
