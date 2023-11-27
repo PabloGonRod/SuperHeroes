@@ -6,6 +6,6 @@ import com.pgonrod.superheroes.domain.Powerstats
 
 interface PowerstatsLocalDataSource {
 
-    fun savePowerstats(heroId:Int,powerstats: Powerstats): Either<ErrorApp, Boolean>
+    fun savePowerstats(heroId:Int, powerstats: Powerstats): Either<ErrorApp, Boolean>
     fun getPowerstats(heroId: Int): Either<ErrorApp, Powerstats?>
 }

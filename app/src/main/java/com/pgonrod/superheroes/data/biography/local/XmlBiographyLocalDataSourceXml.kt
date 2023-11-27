@@ -1,17 +1,35 @@
 package com.pgonrod.superheroes.data.biography.local
 
 import android.content.SharedPreferences
-import com.google.gson.Gson
+import com.pgonrod.app.data.XmlExt
+
 import com.pgonrod.app.errors.Either
 import com.pgonrod.app.errors.ErrorApp
-import com.pgonrod.app.errors.left
-import com.pgonrod.app.errors.right
 import com.pgonrod.superheroes.domain.Biography
-import com.pgonrod.superheroes.domain.Work
+import com.pgonrod.superheroes.domain.SuperHero
 
-class XmlBiographyLocalDataSource (val sharedpref: SharedPreferences) {
 
-    private val editor = sharedpref.edit()
+class XmlBiographyLocalDataSourceXml: BiographyLocalDataSource{
+
+    private lateinit var generic: XmlExt<Biography>
+
+    override fun saveBiography(heroId: Int, biography: Biography): Either<ErrorApp, Boolean> {
+        generic
+        return generic.save(heroId, biography)
+
+
+    }
+
+    override fun getBiography(heroId: Int): Either<ErrorApp, Biography?> {
+        generic
+        return generic.getGenericById(heroId)
+    }
+
+
+}
+
+
+/*private val editor = sharedpref.edit()
     private val gson = Gson()
 
     fun saveBiography(heroId:Int,biography: Biography): Either<ErrorApp, Boolean> {
@@ -26,14 +44,13 @@ class XmlBiographyLocalDataSource (val sharedpref: SharedPreferences) {
     }
 
     fun getBiography(heroId: Int): Either<ErrorApp, Biography?> {
-        try {
+        return try {
             val biography = sharedpref.getString(heroId.toString(), null).let {
                 gson.fromJson(it, Biography::class.java)
             }
-            return biography.right()
+            biography.right()
 
         }catch (ex:Exception){
-            return ErrorApp.DatabaseErrorApp.left()
+            ErrorApp.DatabaseErrorApp.left()
         }
-    }
-}
+    }*/
