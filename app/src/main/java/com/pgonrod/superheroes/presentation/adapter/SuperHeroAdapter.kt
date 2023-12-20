@@ -4,13 +4,19 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.pgonrod.presentation.DiffUtilExt
 import com.pgonrod.superheroes.R
 import com.pgonrod.superheroes.domain.GetAllSuperHeroUseCase
 import com.pgonrod.superheroes.domain.GetSuperHeroUseCase
 import com.pgonrod.superheroes.domain.SuperHero
 import com.pgonrod.superheroes.presentation.SuperHeroDiffUtil
 
-class SuperHeroAdapter : ListAdapter<GetAllSuperHeroUseCase.SuperHeroFeed, SuperHeroViewHolder>(SuperHeroDiffUtil()) {
+class SuperHeroAdapter : ListAdapter<GetAllSuperHeroUseCase.SuperHeroFeed, SuperHeroViewHolder>(
+    DiffUtilExt<GetAllSuperHeroUseCase.SuperHeroFeed>(
+        areItemsTheSame = { oldItem, newItem -> oldItem.id == newItem.id},
+        areContentsTheSame = { oldItem, newItem -> oldItem == newItem}
+    )
+) {
 
     private var onClickDetail: ((Int) -> Unit)? = null
 

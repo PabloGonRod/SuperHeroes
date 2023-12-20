@@ -1,16 +1,29 @@
 package com.pgonrod.superheroes
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.pgonrod.superheroes.presentation.SuperHeroesFeedActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
+import com.pgonrod.superheroes.databinding.ActivityMainBinding
+
 
 class MainActivity : AppCompatActivity() {
 
+    private var _binding: ActivityMainBinding? = null
+    private val binding get() = _binding!!
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        _binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+    }
 
+    fun changeFragment(fragment: Fragment){
+        supportFragmentManager.commit {
+            replace(R.id.fragment_container, fragment)
+            setReorderingAllowed(true)
+            addToBackStack(null)
+        }
     }
 
 }

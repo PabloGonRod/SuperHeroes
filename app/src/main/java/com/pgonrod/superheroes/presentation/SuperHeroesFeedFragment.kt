@@ -1,42 +1,46 @@
 package com.pgonrod.superheroes.presentation
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Context.MODE_PRIVATE
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
+import android.view.LayoutInflater
 import android.view.View
-import android.widget.Toast
+import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.core.widget.addTextChangedListener
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResult
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.faltenreich.skeletonlayout.Skeleton
 import com.faltenreich.skeletonlayout.applySkeleton
+import com.pgonrod.app.data.XmlExt
 import com.pgonrod.app.errors.ErrorApp
 import com.pgonrod.app.extensions.errorDatabase
 import com.pgonrod.app.extensions.errorInternet
 import com.pgonrod.app.extensions.errorUnknown
 import com.pgonrod.app.extensions.hide
 import com.pgonrod.app.extensions.visible
+import com.pgonrod.superheroes.MainActivity
 import com.pgonrod.superheroes.R
 import com.pgonrod.superheroes.data.ApiClient
 import com.pgonrod.superheroes.data.biography.BiographyDataRepository
-import com.pgonrod.superheroes.data.biography.local.XmlBiographyLocalDataSource
-import com.pgonrod.superheroes.data.superhero.SuperheroesDataRepository
+import com.pgonrod.superheroes.data.biography.local.XmlBiographyLocalDataSourceXml
 import com.pgonrod.superheroes.data.biography.remote.api.BiographyApiRemoteDataSource
+import com.pgonrod.superheroes.data.superhero.SuperheroesDataRepository
 import com.pgonrod.superheroes.data.superhero.local.XmlSuperHeroLocalDataSource
 import com.pgonrod.superheroes.data.superhero.remote.api.SuperHeroApiRemoteDataSource
 import com.pgonrod.superheroes.data.work.WorkDataRepository
 import com.pgonrod.superheroes.data.work.local.XmlWorkLocalDataSource
 import com.pgonrod.superheroes.data.work.remote.api.WorkApiRemoteDataSource
-import com.pgonrod.superheroes.databinding.ActivitySuperHeroesFeedBinding
+import com.pgonrod.superheroes.databinding.FragmentSuperHeroesFeedBinding
 import com.pgonrod.superheroes.domain.GetAllSuperHeroUseCase
 import com.pgonrod.superheroes.presentation.adapter.SuperHeroAdapter
 
 
-class SuperHeroesFeedActivity : AppCompatActivity() {
+class SuperHeroesFeedFragment: Fragment() {
 
-    private lateinit var binding: ActivitySuperHeroesFeedBinding
+    private var _binding: FragmentSuperHeroesFeedBinding? = null
+    private val binding get() = _binding!!
     private val superheroAdapter = SuperHeroAdapter()
 
     private val skeleton: Skeleton by lazy {
@@ -47,36 +51,37 @@ class SuperHeroesFeedActivity : AppCompatActivity() {
         SuperHeroesFeedViewModel(
             GetAllSuperHeroUseCase(
                 SuperheroesDataRepository(
-                    XmlSuperHeroLocalDataSource(getSharedPreferences("Superheroes", MODE_PRIVATE)),
+                    XmlSuperHeroLocalDataSource(XmlExt(requireContext(), "SuperHeroes")),
                     SuperHeroApiRemoteDataSource(ApiClient())
                 ),
                 WorkDataRepository(
-                    XmlWorkLocalDataSource(getSharedPreferences("Work", MODE_PRIVATE)),
+                    XmlWorkLocalDataSource(XmlExt(requireContext(), "Work")),
                     WorkApiRemoteDataSource(ApiClient())
                 ),
                 BiographyDataRepository(
-                    XmlBiographyLocalDataSource(getSharedPreferences("Biography", MODE_PRIVATE)),
+                    XmlBiographyLocalDataSourceXml(XmlExt(requireContext(), "Biography")),
                     BiographyApiRemoteDataSource(ApiClient())
                 )
             )
         )
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivitySuperHeroesFeedBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        setupObserver()
-        viewModel.loadSuperheroes()
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentSuperHeroesFeedBinding.inflate(inflater, container, false)
         setupView()
-        actionSearch()
+        return binding.root
     }
+
 
     fun setupView() {
         binding.apply {
             superheroeFeed.apply {
                 layoutManager = LinearLayoutManager(
-                    this@SuperHeroesFeedActivity,
+                    requireContext(),
                     LinearLayoutManager.VERTICAL,
                     false
                 )
@@ -85,6 +90,13 @@ class SuperHeroesFeedActivity : AppCompatActivity() {
             }
 
         }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setupObserver()
+        viewModel.loadSuperheroes()
+        actionSearch()
     }
 
     fun setupObserver() {
@@ -110,7 +122,7 @@ class SuperHeroesFeedActivity : AppCompatActivity() {
                 superheroAdapter.submitList(filtered)
             }
         }
-        viewModel.uiState.observe(this, observer)
+        viewModel.uiState.observe(viewLifecycleOwner, observer)
     }
 
     fun showError(error: ErrorApp) {
@@ -125,17 +137,21 @@ class SuperHeroesFeedActivity : AppCompatActivity() {
         }
 
     }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 
     fun errorUnknown() = binding.viewError.errorUnknown()
     fun errorDatabase() = binding.viewError.errorDatabase()
     fun errorInternet() = binding.viewError.errorInternet()
 
     fun navigateToDetail(id: Int) {
-        val intent = Intent(this, SuperHeroesDetailActivity::class.java)
-        intent.putExtra("id", id)
-        startActivity(intent)
-    }
+        val result = id
+       (activity as MainActivity).changeFragment(SuperHeroesDetailFragment.newInstance())
+        setFragmentResult("requestKey", bundleOf("bundleKey" to result))
 
+    }
 
 
     private fun actionSearch() {
@@ -144,6 +160,5 @@ class SuperHeroesFeedActivity : AppCompatActivity() {
         }
 
     }
-
 
 }
