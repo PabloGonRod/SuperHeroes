@@ -9,4 +9,6 @@
     <string name="combat">Combate</string>
     <string name="filter_nombre_superheroes">Nombre Superheroes</string>
     <string name="search_filter">Buscar</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
